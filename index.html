@@ -12,13 +12,42 @@
 
     <button id="btn">Haz clic</button>
 
-
+    <h2>Formulario</h2>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <button onclick="saludar()">Saludar</button>
+    <p id="mensaje"></p>
 
 
     <script>
         document.getElementById("btn").onclick = function() {
             alert("Hola, has hecho clic")
         }
+
+        function saludar() {
+            let nombre = document.getElementById("nombre").value;
+            if (nombre === "") {
+                document.getElementById("mensaje").textContent = "Por favor escribe tu nombre";
+            }
+            else {
+                document.getElementById("mensaje").textContent= "Hola " + nombre.toUpperCase();
+            }
+        }
+
+        document.getElementById('nombre').addEventListener('input', function (evento) {
+            const value = evento.target.value;
+            const patron = /^[A-Za-záéíóúñÁÉÍÓÚÑ\s]+$/;
+            if (!patron.test(value)) {
+                document.getElementById('mensaje').textContent = "Solo letras permitidas";
+            evento.target.value = value.replace(/[^A-Za-záéíóúñÁÉÍÓÚÑ\s]/g, '');
+            }
+        });
+
+
+
+
+
+
+    
     </script>
 </body>
 
